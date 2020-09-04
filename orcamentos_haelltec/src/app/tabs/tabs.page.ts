@@ -20,12 +20,6 @@ export class TabsPage  implements OnInit {
       velocidade: ['', Validators.required],
       cobertura: ['', Validators.required],
     });
-
-    this.orcamento.valueChanges.subscribe(
-        (selectedValue) => {
-          this.calcular(selectedValue);
-        }
-    );
   }
 
   calcular(form){
