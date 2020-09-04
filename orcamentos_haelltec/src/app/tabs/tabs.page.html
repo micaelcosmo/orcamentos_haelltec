@@ -1,0 +1,52 @@
+<form [formGroup]="orcamento">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Quantos notebooks deseja conectar na rede?</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-input type="number" formControlName="notebooks" name="notebooks"></ion-input>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Quantos computadores de mesa deseja conectar na rede?</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-input type="number" formControlName="desktops" name="desktops" ></ion-input>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Qual a velocidade da rede interna? </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-select formControlName="velocidade" name="velocidade" >
+        <ion-select-option value=300>300 mb/s</ion-select-option>
+        <ion-select-option value=500>500 mb/s</ion-select-option>
+      </ion-select>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Qual a metragem de cobertura (m²)? </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-input type="number" formControlName="cobertura"  name="cobertura" ></ion-input>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Orçamento Total</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-label color="primary" >{{total}}</ion-label>
+    </ion-card-content>
+  </ion-card>
+
+</form>
