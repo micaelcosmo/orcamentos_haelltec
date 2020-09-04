@@ -52,7 +52,7 @@ Instalar Git e configurar repositório
 ```ionic serve```
 
 ###Gerar Build no Android
-```ionic cordova run android --prod --release```
+```ionic cordova run android --prod```
 
 ##Estrutura Projeto
 ###src/app/tabs/tabs.page.html 
