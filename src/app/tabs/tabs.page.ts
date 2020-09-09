@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {OrcamentoService} from "../api/orcamento.service";
 
 @Component({
   selector: 'app-tabs',
@@ -12,7 +13,7 @@ export class TabsPage  implements OnInit {
   public total = '0';
   public emailToggle = false;
 
-  constructor( private formBuilder: FormBuilder ) {}
+  constructor( private formBuilder: FormBuilder, private orcamentoService: OrcamentoService) {}
 
   ngOnInit(){
     this.orcamento = this.formBuilder.group({
@@ -34,8 +35,10 @@ export class TabsPage  implements OnInit {
     this.emailToggle = true;
   }
 
-  enviarEmail(orcamento: any){
+  enviar(orcamento: any){
     console.log(orcamento.email);
+    this.orcamentoService.enviarEmail(orcamento);
+    // TODO redirecionar o cliente pra outro lugar, ou dar algum feedback que o email enviou etc
   }
 
   calcularRoteadores(orcamento: any) {
