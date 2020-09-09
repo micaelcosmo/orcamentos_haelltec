@@ -10,6 +10,7 @@ export class TabsPage  implements OnInit {
 
   orcamento: FormGroup;
   public total = '0';
+  public emailToggle = false;
 
   constructor( private formBuilder: FormBuilder ) {}
 
@@ -19,6 +20,8 @@ export class TabsPage  implements OnInit {
       desktops: ['', Validators.required],
       velocidade: ['', Validators.required],
       cobertura: ['', Validators.required],
+      email: ['', Validators.email],
+
     });
   }
 
@@ -28,6 +31,11 @@ export class TabsPage  implements OnInit {
     const notebooks = this.calcularNotebooks(form.value);
 
     this.total = (roteadores + desktops + notebooks).toFixed(2);
+    this.emailToggle = true;
+  }
+
+  enviarEmail(orcamento: any){
+    console.log(orcamento.email);
   }
 
   calcularRoteadores(orcamento: any) {

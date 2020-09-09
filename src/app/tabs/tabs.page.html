@@ -1,5 +1,5 @@
 <ion-content>
-  <form [formGroup]="orcamento" (ngSubmit)="calcular(orcamento)">
+  <form [formGroup]="orcamento" (ngSubmit)="enviar(orcamento)">
     <ion-card>
       <ion-card-header>
         <ion-card-title>Quantos notebooks deseja conectar na rede?</ion-card-title>
@@ -43,7 +43,7 @@
 
     <ion-card>
       <ion-card-content>
-        <ion-button [disabled]="!orcamento.valid" type="submit">
+        <ion-button (click) ="calcular(orcamento)" [disabled]="!orcamento.valid"  buttonType="button" color="primary">
           <ion-icon name="cash-outline"></ion-icon>
           Calcular
         </ion-button>
@@ -59,6 +59,27 @@
         <ion-label color="primary" >{{total}}</ion-label>
       </ion-card-content>
     </ion-card>
+
+    <ion-card *ngIf="emailToggle">
+      <ion-card-header>
+        <ion-card-title>Se interessou né</ion-card-title>
+        <ion-card-subtitle>Solicita um orcamento para gente</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-input type="email" formControlName="email" name="emails"></ion-input>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="emailToggle">
+      <ion-card-content>
+        <ion-button [disabled]="!orcamento.email" buttonType="submit">
+          <ion-icon name="mail-outline"></ion-icon>
+          Solicitar Orçamento
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
 
   </form>
 </ion-content>
