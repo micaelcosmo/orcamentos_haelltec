@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {OrcamentoService} from "../api/orcamento.service";
+import {OrcamentoService} from '../api/orcamento.service';
 
 @Component({
   selector: 'app-tabs',
