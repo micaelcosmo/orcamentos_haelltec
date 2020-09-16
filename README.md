@@ -1,29 +1,34 @@
-#Projeto
+# Projeto
 Simulador de Orçamentos da Haelltec
 
-##Tecnologias
+## Tecnologias
 nodejs
 angular
 ionic
 cordova
 git
 
-##Ambiente de Desenvolvimento
-###Documentação Ambiente
+## Ambiente de Desenvolvimento
+### Documentação Ambiente
 https://ionicframework.com/docs/intro/environment
-###Documentação de Componentes Ionic
+### Documentação de Componentes Ionic
 https://ionicframework.com/docs/api/select
-###Webstorm IDE
+### Webstorm IDE
 https://blog.jetbrains.com/webstorm/2017/08/developing-ionic-apps-in-webstorm/
-###Nodejs
+### Nodejs
 Baixar nodejs e instalar
-###Angular
+### Angular
 Instalar angular global
-###Ionic
-Instalar ionic global
-###cordova
-Instalar cordova global
-###Android
+### Ionic
+#### Instalar ionic global
+npm install -g ionic
+
+### cordova
+#### Instalar cordova global
+npm install -g cordova
+ionic cordova platform add android
+### Android
+Instalar Java (JDK 1.8+)
 Instalar android studio
 Habilitar modo desenvolvedor no device 
 Liberar modo depuração usb no device e conectar na máquina
