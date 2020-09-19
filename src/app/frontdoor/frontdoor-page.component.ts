@@ -4,10 +4,10 @@ import {OrcamentoService} from '../api/orcamento.service';
 
 @Component({
   selector: 'app-tabs',
-  templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss']
+  templateUrl: 'frontdoor-page.component.html',
+  styleUrls: ['frontdoor-page.component.scss']
 })
-export class TabsPage  implements OnInit {
+export class FrontdoorPage  implements OnInit {
 
   orcamento: FormGroup;
   public total = '0';

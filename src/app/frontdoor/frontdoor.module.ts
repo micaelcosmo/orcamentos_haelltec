@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import { TabsPageRoutingModule } from './tabs-routing.module';
+import { TabsPageRoutingModule } from './frontdoor-routing.module';
 
-import { TabsPage } from './tabs.page';
+import { FrontdoorPage } from './frontdoor-page.component';
 
 @NgModule({
   imports: [
@@ -15,9 +15,9 @@ import { TabsPage } from './tabs.page';
     TabsPageRoutingModule,
     ReactiveFormsModule,
   ],
-  declarations: [TabsPage]
+  declarations: [FrontdoorPage]
 })
-export class TabsPageModule {
+export class FrontdoorModule {
 
 
 }
