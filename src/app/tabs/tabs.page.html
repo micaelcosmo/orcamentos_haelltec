@@ -1,5 +1,5 @@
 <ion-content>
-  <form [formGroup]="orcamento" (ngSubmit)="enviar(orcamento)">
+  <form [formGroup]="orcamento">
     <ion-card>
       <ion-card-header>
         <ion-card-title>Quantos notebooks deseja conectar na rede?</ion-card-title>
@@ -25,8 +25,8 @@
 
       <ion-card-content>
         <ion-select formControlName="velocidade" name="velocidade" >
-          <ion-select-option value=300>300 mb/s</ion-select-option>
-          <ion-select-option value=500>500 mb/s</ion-select-option>
+          <ion-select-option [value]="300">300 mb/s</ion-select-option>
+          <ion-select-option [value]="500">500 mb/s</ion-select-option>
         </ion-select>
 
       </ion-card-content>
@@ -67,14 +67,14 @@
       </ion-card-header>
 
       <ion-card-content>
-        <ion-input type="email" formControlName="email" name="emails"></ion-input>
+        <ion-input type="email" formControlName="email" name="email"></ion-input>
       </ion-card-content>
     </ion-card>
 
     <ion-card *ngIf="emailToggle">
       <ion-card-content>
-        <ion-button [disabled]="!orcamento.email" buttonType="submit">
-          <ion-icon name="mail-outline"></ion-icon>
+        <ion-button buttonType="button" (click)="enviar(orcamento)">
+          <ion-icon name="mail-outline" ></ion-icon>
           Solicitar Orçamento
         </ion-button>
       </ion-card-content>

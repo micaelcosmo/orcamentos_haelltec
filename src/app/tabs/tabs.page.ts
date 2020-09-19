@@ -17,10 +17,10 @@ export class TabsPage  implements OnInit {
 
   ngOnInit(){
     this.orcamento = this.formBuilder.group({
-      notebooks: ['', Validators.required],
-      desktops: ['', Validators.required],
-      velocidade: ['', Validators.required],
-      cobertura: ['', Validators.required],
+      notebooks: [0, Validators.required],
+      desktops: [0, Validators.required],
+      velocidade: [0, Validators.required],
+      cobertura: [0, Validators.required],
       email: ['', Validators.email],
 
     });
@@ -36,8 +36,9 @@ export class TabsPage  implements OnInit {
   }
 
   enviar(orcamento: any){
-    console.log(orcamento.email);
-    this.orcamentoService.enviarEmail(orcamento);
+    this.orcamentoService.enviarEmail(orcamento.value).subscribe(response => {
+      console.log('comuniquei com backend?');
+    });
     // TODO redirecionar o cliente pra outro lugar, ou dar algum feedback que o email enviou etc
   }
 
