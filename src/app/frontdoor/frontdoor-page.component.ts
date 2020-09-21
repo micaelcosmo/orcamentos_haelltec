@@ -10,11 +10,36 @@ import {AlertController} from '@ionic/angular';
 })
 export class FrontdoorPage  implements OnInit {
 
+  constructor( private formBuilder: FormBuilder, private orcamentoService: OrcamentoService, private alertController: AlertController) {}
+
   orcamento: FormGroup;
   public total = '0';
   public emailToggle = false;
 
-  constructor( private formBuilder: FormBuilder, private orcamentoService: OrcamentoService, private alertController: AlertController) {}
+  private static obterQuantidadeDeRoteadores(cobertura: number) {
+    return Math.ceil(cobertura / 300);
+  }
+
+  private static calcularTaxaInstalacao(){
+    return 99.9;
+  }
+
+  private static calcularDesktops(orcamento: any) {
+    let result: number;
+
+    if (orcamento.velocidade <= 300){
+      result = 189.90;
+    } else {
+      result = 219.90;
+    }
+
+    return (result + FrontdoorPage.calcularTaxaInstalacao()) * orcamento.desktops;
+  }
+
+  private static calcularNotebooks(form: any) {
+    const result = 259.90 + FrontdoorPage.calcularTaxaInstalacao();
+    return result * form.notebooks;
+  }
 
   ngOnInit(){
     this.orcamento = this.formBuilder.group({
@@ -29,8 +54,8 @@ export class FrontdoorPage  implements OnInit {
 
   calcular(form){
     const roteadores = this.calcularRoteadores(form.value);
-    const desktops = this.calcularDesktops(form.value);
-    const notebooks = this.calcularNotebooks(form.value);
+    const desktops = FrontdoorPage.calcularDesktops(form.value);
+    const notebooks = FrontdoorPage.calcularNotebooks(form.value);
 
     this.total = (roteadores + desktops + notebooks).toFixed(2);
     this.emailToggle = true;
@@ -38,7 +63,11 @@ export class FrontdoorPage  implements OnInit {
 
   enviar(orcamento: any){
     this.orcamentoService.enviarEmail(orcamento.value).subscribe(response => {
-      this.mostrarConfimacaoUsuario();
+      if (response.ResponseMetadata.HTTPStatusCode == 200){
+        this.mostrarConfimacaoUsuario();
+      }else{
+        this.mostrarNegativaUsuario();
+      }
     });
   }
 
@@ -51,7 +80,7 @@ export class FrontdoorPage  implements OnInit {
       result = 779.90;
     }
 
-    const quantidadeDeRoteadores = this.obterQuantidadeDeRoteadores(orcamento.cobertura);
+    const quantidadeDeRoteadores = FrontdoorPage.obterQuantidadeDeRoteadores(orcamento.cobertura);
     return result * quantidadeDeRoteadores;
 
   }
@@ -72,28 +101,13 @@ export class FrontdoorPage  implements OnInit {
     await alert.present();
   }
 
-  private obterQuantidadeDeRoteadores(cobertura: number) {
-    return Math.ceil(cobertura / 300);
-  }
-
-  private calcularDesktops(orcamento: any) {
-    let result: number;
-
-    if (orcamento.velocidade <= 300){
-      result = 189.90;
-    } else {
-      result = 219.90;
-    }
-
-    return (result + this.calcularTaxaInstalacao()) * orcamento.desktops;
-  }
-
-  private calcularNotebooks(form: any) {
-    const result = 259.90 + this.calcularTaxaInstalacao();
-    return result * form.notebooks;
-  }
-
-  private calcularTaxaInstalacao(){
-    return 99.9;
+  private async mostrarNegativaUsuario() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Ah não!',
+      subHeader: 'Sua solicitação não pode ser completada!',
+      message: 'Por favor revise as informações e tente novamente.',
+    });
+    await alert.present();
   }
 }
