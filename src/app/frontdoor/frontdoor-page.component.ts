@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {OrcamentoService} from '../api/orcamento.service';
+import {AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -13,7 +14,7 @@ export class FrontdoorPage  implements OnInit {
   public total = '0';
   public emailToggle = false;
 
-  constructor( private formBuilder: FormBuilder, private orcamentoService: OrcamentoService) {}
+  constructor( private formBuilder: FormBuilder, private orcamentoService: OrcamentoService, private alertController: AlertController) {}
 
   ngOnInit(){
     this.orcamento = this.formBuilder.group({
@@ -37,9 +38,8 @@ export class FrontdoorPage  implements OnInit {
 
   enviar(orcamento: any){
     this.orcamentoService.enviarEmail(orcamento.value).subscribe(response => {
-      console.log('comuniquei com backend?');
+      this.mostrarConfimacaoUsuario();
     });
-    // TODO redirecionar o cliente pra outro lugar, ou dar algum feedback que o email enviou etc
   }
 
   calcularRoteadores(orcamento: any) {
@@ -60,6 +60,16 @@ export class FrontdoorPage  implements OnInit {
     const charCode = event.key;
     const digitosPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'Backspace', 'Delete'];
     return digitosPermitidos.indexOf(charCode) > -1;
+  }
+
+  private async mostrarConfimacaoUsuario() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'PARABÉNS',
+      subHeader: 'Orçamento solicitado com sucesso!',
+      message: 'Em breve um dos nossos consultores entrará em contato.',
+    });
+    await alert.present();
   }
 
   private obterQuantidadeDeRoteadores(cobertura: number) {
