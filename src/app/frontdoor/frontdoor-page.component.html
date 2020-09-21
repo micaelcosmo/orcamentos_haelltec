@@ -24,10 +24,21 @@
       </ion-card-header>
 
       <ion-card-content>
-        <ion-select formControlName="velocidade" name="velocidade" >
-          <ion-select-option [value]="300">300 mb/s</ion-select-option>
-          <ion-select-option [value]="500">500 mb/s</ion-select-option>
-        </ion-select>
+        <ion-list>
+          <ion-radio-group formControlName="velocidade" name="velocidade">
+
+            <ion-item>
+              <ion-label>300Mbps</ion-label>
+              <ion-radio slot="start" [value]="300"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>500Mbps</ion-label>
+              <ion-radio slot="start" [value]="500"></ion-radio>
+            </ion-item>
+
+          </ion-radio-group>
+        </ion-list>
 
       </ion-card-content>
     </ion-card>
