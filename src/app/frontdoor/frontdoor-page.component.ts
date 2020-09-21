@@ -57,16 +57,9 @@ export class FrontdoorPage  implements OnInit {
   }
 
   validarSomenteNumero(event){
-    const charCode = event.code;
-    console.log(charCode);
-    const negInput = ['NumpadAdd', 'NumpadSubtract', 'NumpadComma', 'NumpadDecimal', 'Minus', 'KeyE'];
-    if (negInput.indexOf(charCode) > -1){
-      return false;
-    }
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      return false;
-    }
-    return true;
+    const charCode = event.key;
+    const digitosPermitidos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'Backspace', 'Delete'];
+    return digitosPermitidos.indexOf(charCode) > -1;
   }
 
   private obterQuantidadeDeRoteadores(cobertura: number) {
