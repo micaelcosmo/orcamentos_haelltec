@@ -43,7 +43,7 @@ export class FrontdoorPage  implements OnInit {
   }
 
   calcularRoteadores(orcamento: any) {
-    let result = 1;
+    let result: number;
 
     if (orcamento.velocidade <= 300){
       result = 699.90;
@@ -56,12 +56,25 @@ export class FrontdoorPage  implements OnInit {
 
   }
 
+  validarSomenteNumero(event){
+    const charCode = event.code;
+    console.log(charCode);
+    const negInput = ['NumpadAdd', 'NumpadSubtract', 'NumpadComma', 'NumpadDecimal', 'Minus', 'KeyE'];
+    if (negInput.indexOf(charCode) > -1){
+      return false;
+    }
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+
   private obterQuantidadeDeRoteadores(cobertura: number) {
     return Math.ceil(cobertura / 300);
   }
 
   private calcularDesktops(orcamento: any) {
-    let result = 1;
+    let result: number;
 
     if (orcamento.velocidade <= 300){
       result = 189.90;
