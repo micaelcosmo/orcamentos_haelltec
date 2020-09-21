@@ -37,7 +37,7 @@
       </ion-card-header>
 
       <ion-card-content>
-        <ion-input type="number" formControlName="cobertura"  name="cobertura" ></ion-input>
+        <ion-input (keydown)="validarSomenteNumero($event)" type="number" formControlName="cobertura"  name="cobertura" ></ion-input>
       </ion-card-content>
     </ion-card>
 
