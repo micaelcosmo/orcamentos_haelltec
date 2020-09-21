@@ -63,7 +63,7 @@ export class FrontdoorPage  implements OnInit {
 
   enviar(orcamento: any){
     this.orcamentoService.enviarEmail(orcamento.value).subscribe(response => {
-      if (response.ResponseMetadata.HTTPStatusCode == 200){
+      if (response.ResponseMetadata.HTTPStatusCode === 200){
         this.mostrarConfimacaoUsuario();
       }else{
         this.mostrarNegativaUsuario();

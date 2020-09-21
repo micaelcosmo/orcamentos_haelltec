@@ -21,7 +21,7 @@ export class OrcamentoService {
   }
 
 
-  public enviarEmail(orcamento): Observable<Orcamento> {
+  public enviarEmail(orcamento): Observable<any> {
     return this.http.post<Orcamento>(this.url, orcamento, OrcamentoService.getOptions())
         .pipe(
             tap(
